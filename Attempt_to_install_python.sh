@@ -35,6 +35,12 @@ step_msg() {
 # Start
 step_msg "Starting Python ${PY_VER} download script"
 
+# Install required packages
+step_msg "Installing required build dependencies"
+step "sudo apt update" sudo apt update
+step "sudo apt install build-essential zlib1g-dev libncurses-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget" sudo apt install build-essential zlib1g-dev libncurses-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+
+
 # Download step
 step_msg "Checking for existing archive ${PY_TGZ}"
 if [[ -f "${PY_TGZ}" ]]; then
