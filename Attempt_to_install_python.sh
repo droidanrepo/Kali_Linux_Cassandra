@@ -38,7 +38,7 @@ step_msg "Starting Python ${PY_VER} download script"
 # Install required packages
 step_msg "Installing required build dependencies"
 step "sudo apt update" sudo apt update
-step "sudo apt install build-essential zlib1g-dev libncurses-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget" sudo apt install build-essential zlib1g-dev libncurses-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+step "sudo apt install build-essential zlib1g-dev libncurses-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev tk-dev tcl-dev wget" sudo apt install build-essential zlib1g-dev libncurses-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev tk-dev tcl-dev wget
 
 
 # Download step
@@ -75,10 +75,10 @@ fi
 
 # Build step (commented out by default)
 echo ">>> Build steps are commented out by default. Uncomment to build/install."
-# PREFIX="/usr/local"
-# step "cd ${PY_DIR}" bash -c "cd ${PY_DIR}"
-# step "./configure --prefix=${PREFIX} --enable-optimizations" bash -c "cd ${PY_DIR} && ./configure --prefix=\"${PREFIX}\" --enable-optimizations"
-# step "make -j${CPU_COUNT}" bash -c "cd ${PY_DIR} && make -j\"${CPU_COUNT}\""
-# step "sudo make altinstall" bash -c "cd ${PY_DIR} && sudo make altinstall"
+PREFIX="/usr/local"
+step "cd ${PY_DIR}" bash -c "cd ${PY_DIR}"
+step "./configure --prefix=${PREFIX} --enable-optimizations --with-ensurepip=install" bash -c "cd ${PY_DIR} && ./configure --prefix=\"${PREFIX}\" --enable-optimizations --with-ensurepip=install"
+step "make -j${CPU_COUNT}" bash -c "cd ${PY_DIR} && make -j\"${CPU_COUNT}\""
+step "sudo make altinstall" bash -c "cd ${PY_DIR} && sudo make altinstall"
 
 echo ">>> Done."
